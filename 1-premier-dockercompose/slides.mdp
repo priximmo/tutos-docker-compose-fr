@@ -12,3 +12,63 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-c
 
 sudo chmod +x /usr/local/bin/docker-compose
 ```
+
+------------------------------------------------
+
+->  Principales commandes <-
+
+* un répertoire avec docker-compose.yml
+
+<br>
+Lancement du service :
+
+* docker-compose build
+	- construction uniquement des images
+
+* docker-compose up
+	- build et run des images
+
+* docker-compose up -d
+	- mode détaché (docker run -d)
+
+------------------------------------------------
+
+->  Principales commandes <-
+
+Gestion du service :
+
+* docker-compose ps
+	- état des services
+
+* docker-compose start
+
+* docker-compose stop
+
+* docker-compose rm
+
+------------------------------------------------
+
+-> Plus fort... <-
+
+* docker-compose scale SERVICE=3
+	- lance 3 instances
+
+* docker-compose pull
+	- maj des images
+
+
+------------------------------------------------
+
+-> Exemple docker-compose.yml
+
+```
+version: '3'
+
+services:
+  myfirstservice:
+    image: alpine
+    restart: always
+    container_name: MyAlpine
+    entrypoint: tail -f /dev/null
+
+```
