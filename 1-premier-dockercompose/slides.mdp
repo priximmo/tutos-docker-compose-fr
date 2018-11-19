@@ -1,116 +1,13 @@
-%title: Docker layers
+%title: Docker compose
 %author: xavki
 
--> Couches des images docker (layers) <-
+-> Docker compose : premiers pas <-
 =========
 
 
--> Principes  <-
-
-* deux type de couches:
-	- lecture seule
-	- lecture-écriture (conteneur)
-
-* couches peuvent se partager entre les images
-
-	image 1       |     image 2
-  ==============================
-  couche 1           couche A
-  couche 2           couche B
-             couche 3
-  couche 4           couche D
-
-<br>
-* écriture
-
-	 conteneur 1  |     conteneur 2
-   ==============================
-R  couche 1           couche A
-R  couche 2           couche B
-R            couche 3
-R  couche 4           couche D
-RW couche 5           couche E
-
--------------------------------------------------
-
--> Les couches d'une image <-
-
-Si Dockerfile
+-> Installation <-
 
 ```
-FROM ubuntu:latest
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends vim
-RUN apt-get install -y --no-install-recommends git
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 ```
 
-<br>
-Lister les couches
-
-```
-docker history monimage:maversion
-```
-
-Résultat
-
-```
-└─ $ ▶ docker history xavki:v1.0 --format "{{.ID}}\t{{.CreatedBy}}"
-7c995f4a51d8	/bin/sh -c apt-get install -y --no-install-r…
-71a2fedce726	/bin/sh -c apt-get install -y --no-install-r…
-7b957bd8d60d	/bin/sh -c apt-get update
-ea4c82dcd15a	/bin/sh -c #(nop)  CMD ["/bin/bash"]
-<missing>	/bin/sh -c mkdir -p /run/systemd && echo 'do…
-<missing>	/bin/sh -c rm -rf /var/lib/apt/lists/*
-<missing>	/bin/sh -c set -xe   && echo '#!/bin/sh' > /…
-<missing>	/bin/sh -c #(nop) ADD file:bcd068f67af2788db…
-```
-
-
--------------------------------------------------
-
--> Les couches d'une image <-
-
-Si Dockerfile
-
-```
-FROM ubuntu:latest
-RUN apt-get update apt-get install -y --no-install-recommends vim git
-```
-
-<br>
-Résultat
-
-```
-└─ $ ▶ docker history xavki:v1.0 --format "{{.ID}}\t{{.CreatedBy}}"
-82b658850e03	/bin/sh -c apt-get update && apt-get install…
-ea4c82dcd15a	/bin/sh -c #(nop)  CMD ["/bin/bash"]
-<missing>	/bin/sh -c mkdir -p /run/systemd && echo 'do…
-<missing>	/bin/sh -c rm -rf /var/lib/apt/lists/*
-<missing>	/bin/sh -c set -xe   && echo '#!/bin/sh' > /…
-<missing>	/bin/sh -c #(nop) ADD file:bcd068f67af2788db…
-
-```
-
--------------------------------------------------
-
--> En mode écriture avec un run <-
-
-```
-docker run -tid --name test xavki:v1.0
-docker exec -ti test sh
-touch toto
-rm -rf srv/
-```
-
-Que se passe-t-il ?
-
-```
-└─ $ ▶ docker diff test
-A /toto
-D /srv
-```
-
-Si construction d'image à partir du conteneur
-```
-docker commit -m "création nouvelle image" test -t xavki:v2.0
-```
