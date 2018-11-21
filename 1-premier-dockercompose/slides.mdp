@@ -4,7 +4,17 @@
 -> Docker compose : premiers pas <-
 =========
 
+-> Intérêts, pourquoi ? <-
 
+* lancer des conteneurs à coordonner c'est pas facile (cf vidéo précédente microservices)
+
+* meilleure gestion des dépendances (réseau, volumes...)
+
+* un service comprend 1 à plusieurs conteneurs
+
+* comme pour dockerfile : partage facile, versionning...
+
+<br>
 -> Installation <-
 
 ```
@@ -18,6 +28,8 @@ sudo chmod +x /usr/local/bin/docker-compose
 ->  Principales commandes <-
 
 * un répertoire avec docker-compose.yml
+
+* commandes similaires à docker (intuitives)
 
 <br>
 Lancement du service :
@@ -69,6 +81,6 @@ services:
     image: alpine
     restart: always
     container_name: MyAlpine
-    entrypoint: tail -f /dev/null
+    entrypoint: ps aux
 
 ```
