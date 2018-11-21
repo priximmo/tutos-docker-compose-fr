@@ -17,6 +17,7 @@
 * 4 fichiers :
 	- docker-compose : orchestration
 	- Dockerfile : créer image applicative
+	- appl.py
 	- requirements.txt : liste des module pip (pour l'image)
 	- script shell de test
 
