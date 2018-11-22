@@ -1,0 +1,78 @@
+%title: Docker compose - volumes
+%author: xavki - code/slides => lien description
+
+-> Les volumes avec docker-compose <-
+=========
+
+
+
+
+* docker = définir un volume persistent externe
+	- en cas de perte du conteneur = pas de perte data
+
+* partager entre conteneur (cf exemple)
+
+------------------------------------------------
+-> Si gestion par docker <-
+
+```
+  redis:
+    image: redis:4.0.11-alpine
+    networks:
+      - backend
+    volumes:
+      - dbdata:/data
+```
+
+et définition du volume
+
+```
+volumes:
+  dbdata:
+```
+
+------------------------------------------------
+
+-> Si chemin spécifique <-
+
+un peu plus poussé...
+
+```
+volumes:
+  dbdata:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/srv/redis'
+
+```
+
+------------------------------------------------
+
+-> Avantage multi-conteneurs <-
+
+```
+version: '3'
+services:
+  app:
+    build: .
+    image: flask-redis:1.0
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - 5000:5000
+    networks:
+      - backend
+      - frontend
+    volumes:
+      - dbdata:/data
+  redis:
+    image: redis:4.0.11-alpine
+    networks:
+      - backend
+    volumes:
+      - dbdata:/data
+
+```
+

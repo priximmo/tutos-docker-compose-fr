@@ -1,0 +1,33 @@
+version: '3'
+services:
+  app:
+    build: .
+    image: flask-redis:1.0
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - 5000:5000
+    networks:
+      - backend
+      - frontend
+    volumes:
+      - dbdata:/database
+  redis:
+    image: redis:4.0.11-alpine
+    networks:
+      - backend
+    volumes:
+      - dbdata:/data
+
+networks:
+  backend:
+  frontend:
+
+volumes:
+  dbdata:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/srv/redis'
+
