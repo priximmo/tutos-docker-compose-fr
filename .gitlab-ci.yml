@@ -2,7 +2,7 @@ image: tmaier/docker-compose:latest
 
 before_script:
   - docker-compose --version
-
+  - service docker restart
 build:
   script:
     - ls
