@@ -1,8 +1,8 @@
-image: tmaier/docker-compose:latest
+image: gitlab/dind
 
 before_script:
   - docker-compose --version
-  - service docker restart
+  - docker --version
 build:
   script:
     - ls
