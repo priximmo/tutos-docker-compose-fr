@@ -1,0 +1,36 @@
+%title: Dockprom
+%author: xavki - code/slides => lien description
+
+-> Dockprom pour superviser <-
+=========
+
+Dockprom c'est :
+
+* prometheus : serveur de supervision
+
+* grafana : data visualisation métriques (graphique)
+
+* cAdvisor : collecte de métriques sur conteneurs
+
+* alertmanager : alerteur
+
+* nodeexporter : export de métriques (host docker)
+
+* pushgateway : pousser des métriques personnalisées
+
+* caddy : https
+
+Lien : https://github.com/stefanprodan/dockprom
+
+------------------------------------------------
+
+-> Comment faire ? <-
+
+```
+git clone https://github.com/stefanprodan/dockprom
+
+cd dockprom
+
+docker-compose up -d
+```
+
