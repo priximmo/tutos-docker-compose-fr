@@ -1,0 +1,23 @@
+%title: Docker scale
+%author: xavki - code/slides => lien description
+
+-> Scaling <-
+=========
+
+* ex : 
+avoir plusieurs conteneurs applicatifs sur la même bdd
+
+<br>
+* sans traefik => pb pour ajouter les ip et load-balancing
+
+<br>
+* avec traefik => load-balancing automatique
+
+```
+docker-compose up -d scale app=2
+```
+
+<br>
+* possible à chaud
+
+BEAUCOUP plus d'options avec docker swarm
