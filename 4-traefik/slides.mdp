@@ -1,0 +1,123 @@
+%title: Docker Traefik
+%author: xavki - code/slides => lien description
+
+-> Traefik son intérêt ? <-
+=========
+
+<br>
+* ne pas utiliser les ip des conteneurs
+
+<br>
+* RP pour docker
+	- url => conteneur
+
+<br>
+* Valable pour plusieurs url et plusieurs conteneurs
+
+<br>
+* Important dans la résilience applicative :
+	- maintien des url
+  - maintien du service traefik (état : toujours up)
+
+<br>
+* Load balancing si scaling
+
+<br>
+Lien : vidéo plus complète
+	- https://www.youtube.com/watch?v=QvAz9mVx5TI
+
+------------------------------------------------
+
+-> Sans TRAEFIK <-
+
+```
+          Host                +---------------+
+                          +--->   Conteneur1  |   IP: 172.17.0.2
+                          |   +---------------+
+  +----------------+      |
+  |                |      |   +---------------+
+  |   RP standard  +---------->   Conteneur2  |   IP: 172.17.0.3
+  |                |      |   +---------------+
+  |                |      |
+  +----------------+      |   +---------------+
+                          +--->  Conteneur n  |   IP: 172.17.0.n
+                              +---------------+
+```
+
+------------------------------------------------
+
+-> Avec TRAEFIK <-
+
+```
+              +                                        +-----------------+
+              |                                      +->   Service 1     |
+              |                                      | +-----------------+
+              |                                      |
+              |                                      |
+              |          +------------------------+  | +-----------------+
+  Flux ext   +---------->+  Conteneur Traefik     +---->   Service 2     |
+              |          +------------------------+  | +-----------------+
+              |                                      |
+              |                                      |
+              |                                      | +-----------------+
+              |                                     +-->    Service n    |
+              |                                        +-----------------+
+              |
+              +
+```
+
+------------------------------------------------
+
+->  Docker compose de Traefik <-
+
+```
+version: "3"
+services:
+  traefik:
+    image: traefik
+    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+    networks:
+      - webgateway
+networks:
+  webgateway:
+    driver: bridge
+```
+
+
+------------------------------------------------
+
+-> Mise en pratique du RP Traefik <-
+```
+version: '3'
+services:
+  app:
+    build: .
+    image: flask-redis:1.0
+    environment:
+      - FLASK_ENV=development
+    expose:
+      - "80"
+    networks:
+      - traefik
+    labels:
+      - "traefik.docker.network=traefik"
+      - "traefik.backend=xavki"
+      - "traefik.frontend.rule=Host:xavki.localhost"
+      - "traefik.port=80"
+  redis:
+    image: redis:4.0.11-alpine
+    networks:
+      - traefik
+networks:
+  traefik:
+    external:
+      name: traefik_webgateway
+```
+
