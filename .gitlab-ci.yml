@@ -3,7 +3,7 @@ before_script:
 
 build:
   script:
-		- cd ./2-premiere-application/
+    - cd ./2-premiere-application/
     - docker-compose up -d
 
 test:
