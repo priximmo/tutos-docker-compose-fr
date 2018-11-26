@@ -1,0 +1,12 @@
+before_script:
+  - docker --version
+
+build:
+  script:
+		- cd 2-premiere-application/
+    - docker-compose up -d
+
+test:
+  script:
+    - curl localhost:80 
+
