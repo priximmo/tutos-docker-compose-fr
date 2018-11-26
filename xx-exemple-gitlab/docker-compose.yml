@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+   gitlab:
+       image: gitlab/gitlab-ce:latest
+       container_name: gitlab
+       restart: always
+       hostname: gitlab.adgroupe.priv
+       ports:
+         - '8443:443'
+         - '8080:80'
+         - '8022:22'
+       volumes:
+         - /home/ubuntu/docker/gitlab/config/:/etc/gitlab
+         - /home/ubuntu/docker/gitlab/logs/:/var/log/gitlab
+         - /home/ubuntu/docker/gitlab/data/:/var/opt/gitlab
+
