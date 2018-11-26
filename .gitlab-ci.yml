@@ -1,4 +1,4 @@
-image: docker:compose
+image: tmaier/docker-compose:latest
 
 before_script:
   - docker-compose --version
