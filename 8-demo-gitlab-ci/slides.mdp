@@ -1,0 +1,43 @@
+%title: GitLab CI démo
+%author: xavki - code/slides => lien description
+
+-> C'est juste une démo <-
+=========
+
+* gitlab = repositories (git)
+
+* gitlab = registry docker (images)
+
+* gitlab = issue
+
+* gitlab = wiki
+
+* gitlab = page web statique
+
+```
+* gitlab =====  intégration continue
+```
+
+------------------------------------------------------------------
+
+-> Seules conditions ? <-
+
+* déposer son code sur gitlab
+
+* y ajouter un fichier .gitlab-ci.yml
+
+* si nouveau commit = test CI
+
+<br>
+
+```
+image: docker
+
+services:
+  - docker:dind
+
+build:
+  script:
+
+```
+

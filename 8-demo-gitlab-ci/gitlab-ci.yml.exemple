@@ -1,0 +1,29 @@
+image: docker
+
+services:
+  - docker:dind
+
+build:
+  script:
+
+# ajout de docker compose à l'image docker in docker
+    - apk add --no-cache py-pip
+    - pip install docker-compose
+
+# lancement du docker compose
+    - cd ./2-premiere-application/
+    - docker-compose up -d
+
+# test du service docker compose app
+    - apk add curl wget
+    - ID=`docker ps --format '{{.ID}} {{.Image}}' | grep 'flask-redis' | awk '{print $1}'`
+    - echo $ID
+    - echo "[TEST] affichage contenu base"
+    - docker exec -i $ID sh -c "wget -S -O - localhost:80"
+    - docker cp post-get.sh $ID:~
+    - docker exec -i $ID sh -c "apk add curl"
+    - echo ""
+    - echo ""
+    - echo "[TEST] requête POST"
+    - docker exec -i $ID sh -c "./post-get.sh"
+    - docker exec -i $ID sh -c "wget -S -O - localhost:80"
