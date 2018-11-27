@@ -7,7 +7,37 @@
 * ex : 
 avoir plusieurs conteneurs applicatifs sur la même bdd
 
+Sans scale
+
+```
+ +-------+   +-----+     +-------+   +-------+
+ |  Flux +--->  T  +----->  App  +--->  Bdd  |
+ +-------+   +-----+     +-------+   +-------+
+```
+
 <br>
+
+Avec scale
+
+```
+                             +-------+
+                         +--->  App  |
+                         |   +-------+
+                         |
+  +-------+    +-----+   |   +-------+       +-------+
+  |  Flux +-- ->  T  +------->  App  +--------> Bdd  |
+  +-------+    +-----+   |   +-------+       +-------+
+                         |
+                         |   +-------+
+                         +--->  App  |
+                             +-------+
+```
+
+------------------------------------------------------------------
+
+-> intérêt de traefik et docker <-
+
+
 * sans traefik => pb pour ajouter les ip et load-balancing
 
 <br>
@@ -17,7 +47,6 @@ avoir plusieurs conteneurs applicatifs sur la même bdd
 docker-compose up -d scale app=2
 ```
 
-<br>
 * possible à chaud
 
 BEAUCOUP plus d'options avec docker swarm
