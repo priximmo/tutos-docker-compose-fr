@@ -1,0 +1,25 @@
+version: '3'
+services:
+  app:
+    build: .
+    image: flask-redis:1.0
+    environment:
+      - FLASK_ENV=development
+    expose:
+      - "80"
+    networks:
+      - traefik
+    labels:
+      - "traefik.docker.network=traefik"
+      - "traefik.backend=xavki"
+      - "traefik.frontend.rule=Host:xavki.localhost"
+      - "traefik.port=80"
+  redis:
+    image: redis:4.0.11-alpine
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external:
+      name: traefik_webgateway

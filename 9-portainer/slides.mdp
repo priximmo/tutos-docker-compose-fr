@@ -1,0 +1,42 @@
+%title: Docker Portainer
+%author: xavki - code/slides => lien description
+
+-> Portainer intérêt ? <-
+=========
+
+* interface graphique pour gérer docker
+
+<br>
+* actions sur les conteneurs (y compris création)
+
+<br>
+* détails sur un conteneur : images...
+
+<br>
+* metrics conteneurs
+
+<br>
+* logs de conteneurs
+
+<br>
+* console du conteneur
+
+
+------------------------------------------------
+
+-> Autres <-
+
+* Gestion des images
+
+* Réseaux
+
+* Volumes
+
+* Templates de conteneurs
+
+* Visuaisation du Swarm (nodes)
+
+* Gestion des services (compose et swarm)
+
+* Gestion des endpoints (ajout de serveur à portainer)
+

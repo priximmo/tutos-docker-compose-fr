@@ -1,0 +1,38 @@
+version: "3"
+services:
+  app:
+    build: ./app
+    volumes:
+      - ./app:/usr/share/nginx/html
+    labels:
+      - "traefik.docker.network=traefik"
+      - "traefik.backend=app-be"
+      - "traefik.frontend.rule=Host:app.localhost"
+    networks:
+      - traefik
+  blog:
+    build: ./blog
+    volumes:
+      - ./blog:/usr/share/nginx/html
+    labels:
+      - "traefik.backend=blog-be"
+      - "traefik.docker.network=traefik"
+      - "traefik.frontend.rule=Host:blog.localhost"
+    networks:
+      - traefik
+  website:
+    build: ./website
+    volumes:
+      - ./website:/usr/share/nginx/html
+    labels:
+      - "traefik.backend=website-be"
+      - "traefik.docker.network=traefik"
+      - "traefik.frontend.rule=Host:localhost"
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external:
+      name: traefik_webgateway
+

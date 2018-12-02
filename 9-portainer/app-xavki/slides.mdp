@@ -1,0 +1,65 @@
+%title: Docker compose - première appli
+%author: xavki - code/slides => lien description
+
+-> Deployer une application <-
+=========
+
+<br>
+-> L'application <-
+
+* applicatif flask (python) = serveur web + applicatif
+	- port 5000
+	- réception html de GET/POST
+
+* database redis (update/select)
+
+<br>
+* 4 fichiers :
+	- docker-compose : orchestration
+	- Dockerfile : créer image applicative
+	- appl.py
+	- requirements.txt : liste des module pip (pour l'image)
+	- script shell de test
+
+
+------------------------------------------------
+
+->  Le docker-compose.yml <-
+
+```
+version: '3'
+services:
+  app:
+    build: .
+    image: flask-redis:1.0
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - 5000:5000
+  redis:
+    image: redis:4.0.11-alpine
+
+```
+
+
+------------------------------------------------
+
+-> Le Dockerfile <-
+
+```
+FROM python:3.7.0-alpine3.8
+WORKDIR /usr/src/app
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+ENV FLASK_APP=app.py
+CMD flask run --host=0.0.0.0
+```
+
+-> Le requirements.txt <-
+
+```
+flask
+redis
+```
+

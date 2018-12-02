@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+
+  portainer:
+      image: portainer/portainer
+      expose:
+        - "9000"
+      networks:
+        - traefik
+      labels:
+        - "traefik.docker.network=traefik"
+        - "traefik.frontend.rule=Host:portainer.localhost"
+        - "traefik.port=9000"
+        - "traefik.backend=portainer"
+        - "traefik.frontend.entryPoints=http"
+      volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock"
+        #- "/srv/data/templates:/usr/share/nginx/html"
+
+networks:
+  traefik:
+    external:
+      name: traefik_webgateway
