@@ -5,7 +5,7 @@ services:
      container_name: mysql
      image: mysql:5.7
      volumes:
-       - wp_db/:/var/lib/mysql/
+       - wp_db:/var/lib/mysql/
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: somewordpress

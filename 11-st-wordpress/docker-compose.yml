@@ -2,26 +2,50 @@ version: '3.3'
 
 services:
    db:
+     container_name: mysql
      image: mysql:5.7
      volumes:
-       - db_data:/var/lib/mysql
+       - wp_db:/var/lib/mysql/
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: somewordpress
        MYSQL_DATABASE: wordpress
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
+     networks:
+     - wp
 
    wordpress:
      depends_on:
        - db
+     container_name: wordpress
      image: wordpress:latest
+     volumes:
+       - wp_statics:/var/www/html/
      ports:
-       - "8000:80"
+       - 8000:80
      restart: always
      environment:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
+     networks:
+     - wp
+
+
+networks:
+  wp:
+
 volumes:
-    db_data:
+  wp_db:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /srv/wordpress/db
+  wp_statics:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /srv/wordpress/statics
