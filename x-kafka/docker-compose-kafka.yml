@@ -1,3 +1,4 @@
+#https://medium.com/better-programming/kafka-docker-run-multiple-kafka-brokers-and-zookeeper-services-in-docker-3ab287056fd5
 version: ‘2.1’
 services:
  zookeeper-1:
