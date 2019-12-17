@@ -28,7 +28,7 @@ Options:
   -j, --jenkins
     run jenkins container
 
-  -pos, --postgres
+  -p, --postgres
     run postgres
   "
 }
@@ -193,7 +193,7 @@ mkdir -p $DIR/postgres/
 echo "
 version: '3.0'
 services:
-  web:
+  postgres:
    image: postgres:latest
    container_name: postgres
    environment:
@@ -231,7 +231,7 @@ Credentials:
                 db: mydb
                 port: 5432
 
-command : psql -h <ip> -u myuser mydb
+command : psql -h <ip> -U myuser mydb
 
 "
 }

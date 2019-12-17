@@ -77,7 +77,7 @@ mkdir -p $DIR/gitlab/{config,data,logs}
 echo "
 version: '3.0'
 services:
-  web:
+  gitlab:
    image: 'gitlab/gitlab-ce:latest'
    container_name: gitlab
    hostname: 'gitlab.example.com'
