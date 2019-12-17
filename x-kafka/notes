@@ -1,0 +1,8 @@
+* create topic :
+docker run --net=host --rm confluentinc/cp-kafka:latest kafka-topics --create --topic mytopic --partitions 2 --replication-factor 2 --if-not-exists --zookeeper localhost:32181
+
+* insert data :
+docker run --net=host --rm confluentinc/cp-kafka:latest bash -c "seq 100 | kafka-console-producer --broker-list localhost:29092 --topic mytopic"
+
+* request data :
+docker run --net=host --rm confluentinc/cp-kafka:latest kafka-console-consumer --bootstrap-server localhost:29092 --topic mytopic --from-beginning
