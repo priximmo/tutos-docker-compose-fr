@@ -1,0 +1,26 @@
+# TUTORIELS FRANCAIS SUR DOCKER-COMPOSE
+
+
+- 1. [DOCKER-COMPOSE - 1. INTRODUCTION ET PREMIER RUN](https://www.youtube.com/watch?v=pMAGe6nTkws)
+- 2. [DOCKER-COMPOSE - 2. NOTION DE SERVICES](https://www.youtube.com/watch?v=Qh1fVlF9l9I)
+- 3. [DOCKER COMPOSE - 3. LES RESEAUX](https://www.youtube.com/watch?v=hxVxmh3MlD8)
+- 4. [DOCKER-COMPOSE - 4. LES VOLUMES PERSISTANTS](https://www.youtube.com/watch?v=HUXXKYA7j0s)
+- 5. [Docker compose - 5. TRAEFIK le reverse-proxy pour conteneurs | tutos fr](https://www.youtube.com/watch?v=6CFjKvPheCU)
+- 6. [Docker compose -  Superviser docker avec DockProm | tutos fr](https://www.youtube.com/watch?v=6V7q54JugVE)
+- 7. [Docker compose - 7. Scaler une application | tutos fr](https://www.youtube.com/watch?v=YW2fYq_PiyY)
+- 8. [Docker compose - 8. Intégration continue dans GITLAB-CI | tutos fr](https://www.youtube.com/watch?v=DQ67el1WFEU)
+- 9. [DOCKER-COMPOSE - 9. PORTAINER](https://www.youtube.com/watch?v=pzWXOguQ3Lw)
+- 10. [Docker compose - 10. Stack : prometheus et grafana](https://www.youtube.com/watch?v=-eJbTaQ-3e0)
+- 11. [Docker-compose - 11. Stack wordpress et mysql](https://www.youtube.com/watch?v=yWNUu7zHW6g)
+- 12. [Docker-compose - 12. Stack traefik, wordpress, phpmyadmin](https://www.youtube.com/watch?v=4I8W3n4V81c)
+- 13. [Docker-compose - 13. Wordpress, traefik et grafana/prometheus](https://www.youtube.com/watch?v=T9Az-Lg-V-Q)
+- 14. [Docker-compose - 14. Script : lancement de conteneurs utilitaires](https://www.youtube.com/watch?v=cnyq5WvK5lk)
+- 15. [Docker-compose - 15. Script : lancement de jenkins](https://www.youtube.com/watch?v=-vliqcsyKlA)
+- 16. [Docker-compose - 16. Script : instance GITLAB](https://www.youtube.com/watch?v=AiHqg-qRg2M)
+- 17. [Docker-compose - 17. Script : instance postgresql](https://www.youtube.com/watch?v=wzWtiWShd_c)
+- 18. [Docker-compose - 18. Script : installation de cassandra](https://www.youtube.com/watch?v=u9SfnjdFVeg)
+- 19. [Docker-compose - 19. Installer un mariadb](https://www.youtube.com/watch?v=Zk1CUU2ivqc)
+- 20. [Docker-compose - 20. Installation de Prometheus (TSDB)](https://www.youtube.com/watch?v=4K9ACtAx2_0)
+- 21. [Docker-compose - 21. Script : installation de Grafana](https://www.youtube.com/watch?v=wd8EmLqeUf4)
+- 22. [Docker-compose - 22. Cluster Kafka et Zookeeper](https://www.youtube.com/watch?v=MXVfk_05_sA)
+
