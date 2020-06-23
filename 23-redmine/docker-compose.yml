@@ -1,0 +1,31 @@
+version: '3.1'
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    networks:
+      - redmine
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_DB=redmine'
+  redmine:
+    image: redmine:latest
+    restart: always
+    networks:
+      - redmine
+    volumes:
+      - redmine-data:/usr/src/redmine/files
+    ports:
+      - 80:3000
+    environment:
+      - 'REDMINE_DB_POSTGRES=postgres'
+      - 'REDMINE_DB_DATABASE=redmine'
+      - 'REDMINE_DB_PASSWORD=password'
+volumes:
+  postgres-data:
+  redmine-data:
+networks:
+  redmine:
+    driver: bridge
