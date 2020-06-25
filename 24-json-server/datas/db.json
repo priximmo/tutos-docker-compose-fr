@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "nom": "xavier",
+      "ville": "caen"
+    },
+    {
+      "id": 2,
+      "nom": "pierre",
+      "ville": "lyon"
+    },
+    {
+      "id": 3,
+      "nom": "jacques",
+      "ville": "bordeaux"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "salut",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "body": "au revoir",
+      "userId": 2
+    }
+  ],
+  "replies": [
+    {
+      "id": 1,
+      "body": "ok",
+      "commentId": 1
+    },
+    {
+      "id": 2,
+      "body": "merci",
+      "commentId": 2
+    }
+  ]
+}
